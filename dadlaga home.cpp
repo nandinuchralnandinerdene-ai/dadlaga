@@ -230,68 +230,180 @@ void createHomePage()
     file << "<!DOCTYPE html>";
     file << "<html>";
     file << "<head>";
-	file << "<title>Home</title>";
-	
-	file << "<style>";
-	
-	file << "body{";
-	file << "margin:0;";
-	file << "background:#312e2b;";
-	file << "font-family:Arial;";
-	file << "display:flex;";
-	file << "justify-content:center;";
-	file << "align-items:center;";
-	file << "height:100vh;";
-	file << "color:white;";
-	file << "}";
-	
-	file << ".container{";
-	file << "background:#262421;";
-	file << "padding:40px;";
-	file << "border-radius:20px;";
-	file << "width:600px;";
-	file << "text-align:center;";
-	file << "box-shadow:0 0 20px black;";
-	file << "}";
-	
-	file << "button{";
-	file << "width:280px;";
-	file << "padding:15px;";
-	file << "margin:10px;";
-	file << "font-size:20px;";
-	file << "background:#81b64c;";
-	file << "border:none;";
-	file << "border-radius:10px;";
-	file << "color:white;";
-	file << "cursor:pointer;";
-	file << "}";
-	
-	
-	file << "button:hover{";
-	file << "background:#93c85b;";
-	file << "transform:scale(1.03);";
-	file << "}";
-	
-	file << "</style>";
-	
-	file << "</head>";
+    file << "<meta charset='UTF-8'>";
+    file << "<title>Checkers Arena</title>";
+
+    file << "<style>";
+
+    file << "*{margin:0;padding:0;box-sizing:border-box;}";
+
+    file << "body{";
+    file << "height:100vh;";
+    file << "display:flex;";
+    file << "justify-content:center;";
+    file << "align-items:center;";
+    file << "font-family:Arial,sans-serif;";
+    file << "background:linear-gradient(135deg,#1e1e1e,#312e2b,#1a1a1a);";
+    file << "overflow:hidden;";
+    file << "}";
+
+    file << ".container{";
+    file << "width:850px;";
+    file << "background:rgba(38,36,33,0.88);";
+    file << "backdrop-filter:blur(12px);";
+    file << "border-radius:25px;";
+    file << "padding:40px;";
+    file << "text-align:center;";
+    file << "box-shadow:0 0 35px rgba(0,0,0,0.7);";
+    file << "color:white;";
+    file << "animation:fadeIn 1s ease;";
+    file << "}";
+
+    file << "@keyframes fadeIn{";
+    file << "from{opacity:0;transform:translateY(40px);} ";
+    file << "to{opacity:1;transform:translateY(0);} ";
+    file << "}";
+
+    file << ".logo{";
+    file << "font-size:64px;";
+    file << "font-weight:bold;";
+    file << "letter-spacing:4px;";
+    file << "margin-bottom:10px;";
+    file << "text-shadow:0 0 20px #81b64c;";
+    file << "}";
+
+    file << ".subtitle{";
+    file << "font-size:22px;";
+    file << "color:#cccccc;";
+    file << "margin-bottom:35px;";
+    file << "}";
+
+    file << ".playBtn{";
+    file << "width:360px;";
+    file << "height:85px;";
+    file << "font-size:32px;";
+    file << "font-weight:bold;";
+    file << "background:#81b64c;";
+    file << "border:none;";
+    file << "border-radius:15px;";
+    file << "color:white;";
+    file << "cursor:pointer;";
+    file << "transition:0.3s;";
+    file << "box-shadow:0 0 20px rgba(129,182,76,0.5);";
+    file << "}";
+
+    file << ".playBtn:hover{";
+    file << "transform:scale(1.06);";
+    file << "background:#93c85b;";
+    file << "}";
+
+    file << ".menu{";
+    file << "margin-top:25px;";
+    file << "}";
+
+    file << ".menu button{";
+    file << "width:220px;";
+    file << "padding:14px;";
+    file << "margin:8px;";
+    file << "font-size:18px;";
+    file << "background:#444;";
+    file << "border:none;";
+    file << "border-radius:12px;";
+    file << "color:white;";
+    file << "cursor:pointer;";
+    file << "transition:0.3s;";
+    file << "}";
+
+    file << ".menu button:hover{";
+    file << "background:#81b64c;";
+    file << "transform:translateY(-3px);";
+    file << "}";
+
+    file << ".stats{";
+    file << "display:flex;";
+    file << "justify-content:center;";
+    file << "gap:25px;";
+    file << "margin-top:35px;";
+    file << "}";
+
+    file << ".card{";
+    file << "width:180px;";
+    file << "background:#1f1f1f;";
+    file << "padding:20px;";
+    file << "border-radius:15px;";
+    file << "box-shadow:0 0 15px rgba(0,0,0,0.4);";
+    file << "}";
+
+    file << ".card h2{";
+    file << "color:#81b64c;";
+    file << "margin-bottom:10px;";
+    file << "}";
+
+    file << ".version{";
+    file << "margin-top:30px;";
+    file << "color:#999;";
+    file << "}";
+
+    file << "</style>";
+    file << "</head>";
 
     file << "<body>";
-	file << "<div class='container'>";
-    file << "<h1>CHECKERS ARENA</h1>";
-	file << "<p>Play Checkers Against Your Friends</p>";
-    file << "<button style='width:320px;height:70px;font-size:28px;' onclick=\"location.href='game.html'\">PLAY NOW</button>";
 
-	file << "<button onclick=\"location.href='leaderboard.html'\">Leaderboard</button><br><br>";
-	
-	file << "<button onclick=\"location.href='profile.html'\">Profile</button><br><br>";
-	
-	file << "<button onclick=\"location.href='settings.html'\">Settings</button>";
-	file << "<br><br>";
-    file << "<small>Version 1.0</small>";
+    file << "<div class='container'>";
+
+    file << "<div class='logo'>CHECKERS ARENA</div>";
+
+    file << "<div class='subtitle'>";
+    file << "Ultimate Online Checkers Experience";
     file << "</div>";
-	file << "</body>";
-    
+
+    file << "<button class='playBtn' ";
+    file << "onclick=\"location.href='game.html'\">";
+    file << "PLAY NOW";
+    file << "</button>";
+
+    file << "<div class='menu'>";
+
+    file << "<button onclick=\"location.href='leaderboard.html'\">";
+    file << "Leaderboard";
+    file << "</button>";
+
+    file << "<button onclick=\"location.href='profile.html'\">";
+    file << "Profile";
+    file << "</button>";
+
+    file << "<button onclick=\"location.href='settings.html'\">";
+    file << "Settings";
+    file << "</button>";
+
+    file << "</div>";
+
+    file << "<div class='stats'>";
+
+    file << "<div class='card'>";
+    file << "<h2>Rating</h2>";
+    file << "<p>1625</p>";
+    file << "</div>";
+
+    file << "<div class='card'>";
+    file << "<h2>Wins</h2>";
+    file << "<p>15</p>";
+    file << "</div>";
+
+    file << "<div class='card'>";
+    file << "<h2>Games</h2>";
+    file << "<p>20</p>";
+    file << "</div>";
+
+    file << "</div>";
+
+    file << "<div class='version'>";
+    file << "Version 2.0";
+    file << "</div>";
+
+    file << "</div>";
+
+    file << "</body>";
     file << "</html>";
 
     file.close();
