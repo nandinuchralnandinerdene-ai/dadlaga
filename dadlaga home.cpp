@@ -1533,63 +1533,106 @@ void createProfilePage()
 }
 void createSettingsPage()
 {
-    ofstream file("settings.html");
+	   ofstream file("settings.html");
 
     file << "<!DOCTYPE html>";
     file << "<html>";
+    file << "<head>";
+    file << "<meta charset='UTF-8'>";
+    file << "<title>Settings</title>";
+
+    file << "<style>";
+
+    file << "body{";
+    file << "background:#312e2b;";
+    file << "display:flex;";
+    file << "justify-content:center;";
+    file << "align-items:center;";
+    file << "height:100vh;";
+    file << "font-family:Arial;";
+    file << "transition:0.3s;";
+    file << "}";
+
+    file << ".card{";
+    file << "background:#262421;";
+    file << "padding:40px;";
+    file << "border-radius:15px;";
+    file << "width:450px;";
+    file << "color:white;";
+    file << "transition:0.3s;";
+    file << "}";
+
+    file << "button{";
+    file << "width:100%;";
+    file << "padding:12px;";
+    file << "margin-top:10px;";
+    file << "background:#81b64c;";
+    file << "border:none;";
+    file << "border-radius:8px;";
+    file << "color:white;";
+    file << "cursor:pointer;";
+    file << "font-size:16px;";
+    file << "}";
+
+    file << "button:hover{";
+    file << "background:#93c85b;";
+    file << "}";
+
+    file << "</style>";
+    file << "</head>";
 
     file << "<body>";
-	file << "<style>";
 
-	file << "body{";
-	file << "background:#312e2b;";
-	file << "display:flex;";
-	file << "justify-content:center;";
-	file << "align-items:center;";
-	file << "height:100vh;";
-	file << "font-family:Arial;";
-	file << "}";
-	
-	file << ".card{";
-	file << "background:#262421;";
-	file << "padding:40px;";
-	file << "border-radius:15px;";
-	file << "width:450px;";
-	file << "color:white;";
-	file << "}";
-	
-	file << "button{";
-	file << "width:100%;";
-	file << "padding:12px;";
-	file << "margin-top:10px;";
-	file << "background:#81b64c;";
-	file << "border:none;";
-	file << "border-radius:8px;";
-	file << "color:white;";
-	file << "cursor:pointer;";
-	file << "}";
+    file << "<div class='card' id='card'>";
 
-	file << "</style>";
-	
-    file << "<div class='card'>";
+    file << "<h1>SETTINGS</h1>";
 
-	file << "<h1>SETTINGS</h1>";
-	
-	file << "<h3>Theme</h3>";
-	
-	file << "<button>Dark Mode</button>";
-	file << "<button>Light Mode</button>";
-	
-	file << "<h3>Language</h3>";
-	
-	file << "<button>English</button>";
-	file << "<button>Mongolian</button>";
-	
-	file << "</div>";
+    file << "<h3>Theme</h3>";
+
+    file << "<button onclick='setDarkMode()'> Dark Mode</button>";
+    file << "<button onclick='setLightMode()'> Light Mode</button>";
+
+    file << "<h3>Language</h3>";
+
+    file << "<button>English</button>";
+    file << "<button>Mongolian</button>";
+
+    file << "<br><br>";
+
+    file << "<button onclick=\"location.href='home.html'\">?? Back Home</button>";
+
+    file << "</div>";
+
+    file << "<script>";
+
+    file << "function setDarkMode(){";
+    file << "document.body.style.background='#312e2b';";
+    file << "document.getElementById('card').style.background='#262421';";
+    file << "document.getElementById('card').style.color='white';";
+    file << "localStorage.setItem('theme','dark');";
+    file << "}";
+
+    file << "function setLightMode(){";
+    file << "document.body.style.background='#f5f5f5';";
+    file << "document.getElementById('card').style.background='white';";
+    file << "document.getElementById('card').style.color='black';";
+    file << "localStorage.setItem('theme','light');";
+    file << "}";
+
+    file << "window.onload=function(){";
+    file << "let theme=localStorage.getItem('theme');";
+
+    file << "if(theme=='light'){";
+    file << "setLightMode();";
+    file << "}else{";
+    file << "setDarkMode();";
+    file << "}";
+    file << "};";
+
+    file << "</script>";
 
     file << "</body>";
     file << "</html>";
 
     file.close();
 }
-
