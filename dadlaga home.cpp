@@ -637,6 +637,7 @@ void createGamePage()
 	file << "if(currentTurn=='b'){";
 	
 	file << "if(!isKing && rowDiff==1 && colDiff==1){";
+	file << "if(playerMustCapture())return;";
 
 	file << "board[newRow][newCol]=movingPiece;";
 	file << "board[oldRow][oldCol]='';";
@@ -682,6 +683,9 @@ void createGamePage()
 	file << "}";
 	
 	file << "if(enemyCount==1){";
+	file << "noCaptureMoves=0;";
+	file << "blackCaptured++;";
+	file << "document.getElementById('blackCaptured').innerText='Black Captured: '+blackCaptured;";
 	
 	file << "board[enemyRow][enemyCol]='';";
 	
@@ -789,6 +793,7 @@ void createGamePage()
 	file << "else{";
 	
 	file << "if(!isKing && rowDiff==-1 && colDiff==1){";
+	file << "if(playerMustCapture())return;";
 
 	file << "board[newRow][newCol]=movingPiece;";
 	file << "board[oldRow][oldCol]='';";
@@ -835,8 +840,10 @@ void createGamePage()
 	file << "}";
 	
 	file << "if(enemyCount==1){";
-
 	file << "kingCaptured=true;";
+	file << "noCaptureMoves=0;";
+	file << "redCaptured++;";
+	file << "document.getElementById('redCaptured').innerText='Red Captured: '+redCaptured;";
 	
 	file << "board[enemyRow][enemyCol]='';";
 	
